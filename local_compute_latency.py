@@ -3,6 +3,9 @@ import torchvision
 import spp_model
 import time
 from image_utils import load_img
+import os
+
+os.environ["OMP_NUM_THREADS"] = "1"
 
 if __name__ == "__main__":
     transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
