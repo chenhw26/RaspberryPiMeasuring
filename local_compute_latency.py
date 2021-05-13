@@ -1,17 +1,15 @@
 import torch
 import torchvision
-import spp_model
+import spp_model_small
 import time
 from image_utils import load_img
-import os
-
-os.environ["OMP_NUM_THREADS"] = "1"
 
 if __name__ == "__main__":
     transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
 
-    cnn_ori = spp_model.MycnnSPPNetOri().cpu()
-    cnn_ori.load_state_dict(torch.load("saved_models/cnn_spp.pt", map_location=torch.device("cpu")))
+    # cnn_ori = spp_model.MycnnSPPNetOri().cpu()
+    # cnn_ori.load_state_dict(torch.load("saved_models/cnn_spp.pt", map_location=torch.device("cpu")))
+    cnn_ori = spp_model_small.MycnnSPPNetOri().cpu()
     cnn_ori.eval()
 
     for res in [112, 224, 448]:
