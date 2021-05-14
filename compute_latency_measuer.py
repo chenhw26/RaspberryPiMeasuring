@@ -12,8 +12,8 @@ if __name__ == "__main__":
     cnn_ori = spp_model_small.MycnnSPPNetOri().cpu()
     cnn_ori.eval()
 
-    # bottlenet = spp_model_small.MycnnBottlenetDronePart(2).cpu()
-    # bottlenet.eval()
+    bottlenet = spp_model_small.MycnnBottlenetDronePart(2).cpu()
+    bottlenet.eval()
 
     print("Local compute latency:")
     for res in [112, 224, 448]:
@@ -42,8 +42,9 @@ if __name__ == "__main__":
     for res in [112, 224, 448]:
         img = transform(load_img("test_img.jpg", crop_size=(448, 448), target_size=(res, res)))
         img = torch.unsqueeze(img, 0)
+        inputs = bottlenet(img)
         start = time.time()
         for _ in range(100):
-            _ = bottlenet_server(img)
+            _ = bottlenet_server(inputs)
         end = time.time()
         print("Res {}: {:.2f}ms/img".format(res, (end-start)*10))
