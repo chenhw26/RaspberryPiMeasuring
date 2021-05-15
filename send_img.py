@@ -6,6 +6,8 @@ import numpy as np
 import cv2
 import spp_model_small
 import torchvision
+import pickle
+import zlib
 
 if __name__ == "__main__":
     context = zmq.Context()
@@ -30,7 +32,8 @@ if __name__ == "__main__":
         print("Res: {}".format(res))
         img = load_img("test_img.jpg", crop_size=(448, 448), target_size=(res, res))
         img = torch.unsqueeze(transform(img), 0)
-        data = bottlenet(img).detach().numpy().tostring()
+        data = bottlenet(img).detach().numpy()
+        data = zlib.compress(pickle.dumps(data, -1))
         # img_encode = cv2.imencode(".jpg", np.array(img))[1]
         # data = np.array(img_encode).tostring()
         start = time.time()
