@@ -27,7 +27,6 @@ if __name__ == "__main__":
         start = time.time()
         for i in range(100):
             print("send {} pic".format(i))
-            time.sleep(0.01)
             skt_send_img.send(data)
         _ = skt_recv_ack.recv()
         end = time.time()
