@@ -7,16 +7,16 @@ import cv2
 if __name__ == "__main__":
     context = zmq.Context()
     skt_send_img = context.socket(zmq.PUB)
-    skt_send_img.bind("tcp://127.0.0.1:5556")  # 本机ip
+    skt_send_img.bind("tcp://192.168.1.141:5556")  # 本机ip
 
     skt_warmup = context.socket(zmq.PUB)
-    skt_warmup.bind("tcp://127.0.0.1:5557")  # 本机ip
+    skt_warmup.bind("tcp://192.168.1.141:5557")  # 本机ip
     for _ in range(10):
         time.sleep(0.05)
         skt_warmup.send("ss".encode("utf-8"))
 
     skt_recv_ack = context.socket(zmq.SUB)
-    skt_recv_ack.connect("tcp://127.0.0.1:5555")  # 远程ip
+    skt_recv_ack.connect("tcp://192.168.1.161:5555")  # 远程ip
     skt_recv_ack.set(zmq.SUBSCRIBE, b"")
 
     for res in [112]:

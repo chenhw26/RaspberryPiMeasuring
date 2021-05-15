@@ -5,15 +5,15 @@ if __name__ == "__main__":
     context = zmq.Context()
 
     skt_recv_img = context.socket(zmq.SUB)
-    skt_recv_img.connect("tcp://127.0.0.1:5556")  # 远程ip
+    skt_recv_img.connect("tcp://192.168.1.141:5556")  # 远程ip
     skt_recv_img.set(zmq.SUBSCRIBE, b"")
 
     skt_warmup = context.socket(zmq.SUB)
-    skt_warmup.connect("tcp://127.0.0.1:5557")  # 远程ip
+    skt_warmup.connect("tcp://192.168.1.141:5557")  # 远程ip
     skt_warmup.set(zmq.SUBSCRIBE, b"")
 
     skt_send_ack = context.socket(zmq.PUB)
-    skt_send_ack.bind("tcp://127.0.0.1:5555") # 本机ip
+    skt_send_ack.bind("tcp://192.168.1.161:5555") # 本机ip
 
     _ = skt_warmup.recv()
     for _ in range(1):
