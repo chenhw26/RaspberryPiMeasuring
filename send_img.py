@@ -26,7 +26,7 @@ if __name__ == "__main__":
     bottlenet.eval()
     transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
 
-    for res in [224]:
+    for res in [448]:
         print("Res: {}".format(res))
         img = load_img("test_img.jpg", crop_size=(448, 448), target_size=(res, res))
         img = torch.unsqueeze(transform(img), 0)
