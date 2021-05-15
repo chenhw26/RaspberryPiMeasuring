@@ -19,7 +19,7 @@ if __name__ == "__main__":
     skt_recv_ack.connect("tcp://192.168.1.161:5555")  # 远程ip
     skt_recv_ack.set(zmq.SUBSCRIBE, b"")
 
-    for res in [224]:
+    for res in [448]:
         print("Res: {}".format(res))
         img = load_img("test_img.jpg", crop_size=(448, 448), target_size=(res, res))
         img_encode = cv2.imencode(".jpg", np.array(img))[1]
