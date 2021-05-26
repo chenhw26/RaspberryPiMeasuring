@@ -1,11 +1,8 @@
 import torch
-import torchvision
 import spp_model_small
 import time
 
 if __name__ == "__main__":
-    transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
-
     # cnn_ori = spp_model.MycnnSPPNetOri().cpu()
     # cnn_ori.load_state_dict(torch.load("saved_models/cnn_spp.pt", map_location=torch.device("cpu")))
     cnn_ori = spp_model_small.MycnnSPPNetOri().cuda()
