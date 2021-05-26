@@ -2,7 +2,6 @@ import torch
 import numpy as np
 from resnet_small import resnet18
 from pyramidpooling import SpatialPyramidPooling
-from torchinfo import summary
 
 
 class MycnnSPPNetOri(torch.nn.Module):
@@ -135,7 +134,3 @@ class MycnnBottlenetServerPart(torch.nn.Module):
     x = self.sppnet_back(x)
     return x
 
-
-if __name__ == "__main__":
-  cnn_ori = MycnnBottlenetServerPart(2)
-  summary(cnn_ori, (1, 2, 57, 57))

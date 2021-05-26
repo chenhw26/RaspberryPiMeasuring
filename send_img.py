@@ -1,6 +1,5 @@
 import torch
 import zmq
-from image_utils import load_img
 import time
 import numpy as np
 import cv2
