@@ -12,7 +12,7 @@ if __name__ == "__main__":
             _ = cnn_ori(img)
 
     print("Local compute latency:")
-    res = 112
+    res = 224
     img = torch.rand(1, 3, res, res)
     while True:
         timer = time.time()
