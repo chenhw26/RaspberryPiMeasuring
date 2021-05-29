@@ -35,7 +35,7 @@ if __name__ == "__main__":
         img_encode = cv2.imencode(".jpg", np.array(img))[1]
         data = np.array(img_encode).tostring()
         start = time.time()
-        for i in range(100):
+        for i in range(1000):
             print("send {} pic".format(i))
             skt_send_img.send(data)
         _ = skt_recv_ack.recv()

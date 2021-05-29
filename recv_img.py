@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     _ = skt_warmup.recv()
     for _ in range(1):
-        for i in range(100):
+        for i in range(1000):
             _ = skt_recv_img.recv()
             print("recv {} pic".format(i))
         time.sleep(0.01)
