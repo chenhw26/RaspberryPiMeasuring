@@ -10,10 +10,10 @@ import zlib
 if __name__ == "__main__":
     context = zmq.Context()
     skt_send_img = context.socket(zmq.PUB)
-    skt_send_img.bind("tcp://192.168.1.214:5556")  # 本机ip
+    skt_send_img.bind("tcp://192.168.1.216:5556")  # 本机ip
 
     skt_warmup = context.socket(zmq.PUB)
-    skt_warmup.bind("tcp://192.168.1.214:5557")  # 本机ip
+    skt_warmup.bind("tcp://192.168.1.216:5557")  # 本机ip
     for _ in range(10):
         time.sleep(0.05)
         skt_warmup.send("ss".encode("utf-8"))
