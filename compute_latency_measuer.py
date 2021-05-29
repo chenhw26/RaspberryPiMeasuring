@@ -11,6 +11,11 @@ if __name__ == "__main__":
     # bottlenet = spp_model_small.MycnnBottlenetDronePart(2).cpu()
     # bottlenet.eval()
 
+    for res in [112, 224, 448]:
+        img = torch.rand(1, 3, res, res).cuda()
+        for _ in range(10):
+            _ = cnn_ori(img)
+
     print("Local compute latency:")
     for res in [112, 224, 448]:
         img = torch.rand(1, 3, res, res).cuda()
