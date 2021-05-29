@@ -5,20 +5,20 @@ import time
 if __name__ == "__main__":
     # cnn_ori = spp_model.MycnnSPPNetOri().cpu()
     # cnn_ori.load_state_dict(torch.load("saved_models/cnn_spp.pt", map_location=torch.device("cpu")))
-    cnn_ori = spp_model_small.MycnnSPPNetOri().cuda()
+    cnn_ori = spp_model_small.MycnnSPPNetOri()
     cnn_ori.eval()
 
     # bottlenet = spp_model_small.MycnnBottlenetDronePart(2).cpu()
     # bottlenet.eval()
 
     for res in [112, 224, 448]:
-        img = torch.rand(1, 3, res, res).cuda()
+        img = torch.rand(1, 3, res, res)
         for _ in range(10):
             _ = cnn_ori(img)
 
     print("Local compute latency:")
     for res in [112, 224, 448]:
-        img = torch.rand(1, 3, res, res).cuda()
+        img = torch.rand(1, 3, res, res)
         start = time.time()
         for _ in range(100):
             _ = cnn_ori(img)
