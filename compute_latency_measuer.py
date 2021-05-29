@@ -20,10 +20,13 @@ if __name__ == "__main__":
     for res in [112, 224, 448]:
         img = torch.rand(1, 3, res, res)
         start = time.time()
-        for _ in range(100):
+        for _ in range(50):
+            timer = time.time()
             _ = cnn_ori(img)
+            timer_end = time.time()
+            if timer_end-timer < 0.2: time.sleep(0.2-timer_end+timer)
         end = time.time()
-        print("Res {}: {:.5f}s/img".format(res, (end-start)/100))
+        print("Res {}: {:.5f}s/img".format(res, (end-start)/50))
 
     # print("\nBottlenet compute latency:")
     # for res in [112, 224, 448]:
